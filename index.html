@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Headgear - Mind Altering Merchandise. Explore our collection of premium, counter-culture artwork and street-smart designs.">
+    <title>Headgear | Mind Altering Merchandise</title>
+
+    <!-- Google Fonts: Cabin Sketch (sketchy handwritten) and Inter (clean body text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <img src="img/logostack-med.png" alt="Headgear Logo" />
+            </div>
+            <div class="tagline"><img src="img/tagline.png" />
+            </div>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="intro-section">
+            <div class="glass-card">
+                <p class="intro-lead">
+                    <!--We make marks, smear pigments, model clay, push pixels, and write code. We paint Portraits,-->
+
+                    <!--
+                    We produce visual anomalies, conversational hazards, and other artifacts of questionable utility.
+                    If you were looking for sensible decor and quiet compliance, you've made a wrong turn.
+                    But if you suspect reality is just a rough draft, we have the edits.
+                    -->
+                    <!--
+                    We manufacture tangible mischief, wearable static, and other forms of creative defiance.
+                    Our creations are designed to invite questions, start arguments, and look excellent doing it.
+                    If you're seeking polite decorations, you've wandered into the wrong studio.
+                    -->
+                    We build artifacts for the beautifully maladjusted. Our creations are designed to disrupt smooth
+                    surfaces, spark conversations, and occasionally concern your neighbors. If you were looking for
+                    quiet aesthetics and polite compromise, you took a wrong turn.
+                </p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <main class="gallery-section">
+            <div class="gallery-header">
+                <div>
+
+                    <img src="img/origart.png" />
+
+                </div>
+                <p>Browse our catalog of original illustrations and mind-altering designs. Click any thumbnail to
+                    view
+                    full screen. Available as prints, t-shirts, or pretty much anything else by request. </p>
+            </div>
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- Thumbnails will be injected dynamically via JavaScript -->
+            </div>
+        </main>
+
+        <!-- Store Section -->
+        <section class="store-section">
+            <div class="tagline"><img src="img/mindmerch.png" />
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Headgear. All Rights Altered.</p>
+        </footer>
+    </div>
+
+    <!-- Shadowbox (Lightbox Modal) -->
+    <div id="shadowbox" class="shadowbox" aria-hidden="true" role="dialog">
+        <button class="shadowbox-close" id="shadowbox-close" aria-label="Close Gallery Modal">&times;</button>
+
+        <button class="shadowbox-nav shadowbox-prev" id="shadowbox-prev" aria-label="Previous Image">
+            <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+        </button>
+
+        <div class="shadowbox-content">
+            <img id="shadowbox-img" src="" alt="Artwork Preview">
+        </div>
+
+        <button class="shadowbox-nav shadowbox-next" id="shadowbox-next" aria-label="Next Image">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+        </button>
+
+        <div class="shadowbox-info">
+            <h3 id="shadowbox-caption" class="shadowbox-caption">Artwork Title</h3>
+            <span id="shadowbox-counter" class="shadowbox-counter">0 / 0</span>
+        </div>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script src="js/main.js" defer></script>
+</body>
+
+</html>
