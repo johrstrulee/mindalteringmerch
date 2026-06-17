@@ -18,7 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding: 20px 40px;
+    padding: 2px 20px;
 }
 
 /* Header Section */
@@ -26,8 +26,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .logo {
@@ -35,25 +35,19 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .logo img {
     width: 80%;
     height: auto;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.05));
+    /*  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.05)); */
 }
 
 .tagline {
-    font-family: 'Kristi', cursive;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #bbddff;
-    /* Vibrant custom neon pink */
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 51, 102, 0.4);
-    margin: 15px 0 0 0;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    letter-spacing: 1.5px;
 }
 
 .tagline img {
@@ -70,44 +64,55 @@ body {
 }
 
 .glass-card {
-
     background: rgba(200, 200, 255, 0.1);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 30px 40px;
-    max-width: 800px;
-    width: 100%;
-    /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); */
-    text-align: justify;
     box-sizing: border-box;
-}
-
-.glass-card h2 {
-    font-family: 'Kristi', cursive;
-    font-size: 2.2rem;
-    color: #00ffff;
-    /* Neon cyan contrast */
-    margin-top: 0;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 255, 255, 0.3);
+    /* Shrink to content, centered by parent flex */
+    display: inline-flex;
+    flex-direction: row;
+    align-items: stretch;
+    /* justify-content: flex-end; */
+    gap: 10px;
 }
 
 .glass-card p {
-    font-size: .9rem;
-    line-height: 1.2;
+    font-size: 1em;
     color: #e0e0e6;
     margin: 0;
-    font-weight: 300;
+    text-align: right;
 }
 
+/* Text block: stretches to match image column height via align-items:stretch */
+/*
 .intro-lead {
-    font-size: 1.25rem !important;
-    line-height: 1.6;
-    margin-bottom: 0 !important;
-    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+font-size: 1.25rem !important; 
+line-height: 1.6; 
+margin: 0 !important;
+color: #ffffff !important;
+text-align: right;
+}
+*/
+
+/* Image column: sized by the image's own intrinsic dimensions */
+.intro-pic {
+
+    width: 100%;
+}
+
+/* Never upscale beyond intrinsic size; height matches column via flex */
+.intro-pic img {
+    max-width: 281px;
+    max-height: 349px;
+    height: auto;
+    width: 100%;
+    min-width: 150px;
+    object-fit: contain;
 }
 
 .intro-columns {
@@ -445,47 +450,38 @@ body {
 /* Responsiveness & Mobile Tweaks */
 @media (max-width: 768px) {
     .container {
-        padding: 15px 20px;
+        padding: 2px 20px;
     }
 
     .header {
-        margin-top: 25px;
-        margin-bottom: 25px;
+        margin-top: 2px;
+        margin-bottom: 10px;
     }
 
     .logo {
         max-width: 300px;
     }
 
-    .tagline {
-        font-size: 1.8rem;
-    }
-
-    .intro-section {
-        margin-bottom: 40px;
-    }
-
+    /*
     .glass-card {
-        padding: 20px 25px;
+        padding: 20px 30px;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
     }
 
-    .glass-card h2 {
-        font-size: 1.7rem;
+    .intro-lead {
+        text-align: right;
+        width: 100%;
     }
 
     .glass-card p {
-        font-size: 0.95rem;
-        line-height: 1.7;
+        font-size: 1.2em;
+        line-height: normal;
     }
+*/
 
-    .intro-columns {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    .intro-column h3 {
-        font-size: 1.15rem;
-    }
 
     .gallery-header {
         margin-bottom: 30px;
@@ -526,4 +522,24 @@ body {
     .shadowbox-content img {
         max-height: 65vh;
     }
+
+
+}
+
+
+@media (max-width: 390px) {
+
+    .glass-card {
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        padding: 0px;
+        box-sizing: border-box;
+        /* Shrink to content, centered by parent flex */
+        /* justify-content: flex-end; */
+        gap: 10px;
+    }
+
+
 }
