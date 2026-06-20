@@ -8,6 +8,11 @@ body {
     min-height: 100vh;
 }
 
+a {
+    text-decoration: none;
+    color: #a5a5af;
+}
+
 p {
     font-size: 1rem;
     margin: 0;
@@ -446,8 +451,8 @@ text-align: right;
 
 /* about section */
 .about-section {
-    margin-top: 40px;
-    margin-bottom: 80px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     max-width: 1200px;
     width: 100%;
     margin-left: auto;
@@ -475,14 +480,36 @@ text-align: right;
 /* Footer Section */
 .footer {
     background-image: url('../img/pentanarchysymbol.png');
-    background-position: center bottom 50px;
+    background-position: center bottom 10px;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 30%;
-    text-align: center;
-    padding: 50px 0 30px 0;
+    background-size: 15%;
+    padding: 0;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer .menu {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+    text-align: left;
+    font-size: 1.1rem;
+    font-family: 'Unica One';
+    padding: 5px;
+}
+
+.footer .cont {
+    padding: 5px 5px 30px 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 1.1rem;
+    font-family: 'Unica One';
 }
 
 .footer p {
