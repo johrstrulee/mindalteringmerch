@@ -24,7 +24,7 @@ p {
 .container {
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(41, 41, 41, 0.88), rgba(41, 41, 41, 0.88)), url("../img/bg-med.png");
+    background-image: linear-gradient(rgba(41, 41, 55, 0.18), rgba(31, 11, 41, 0.08)), url("../img/bg-med.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -62,12 +62,13 @@ p {
     padding: 0;
     text-align: center;
     margin-bottom: 20px;
+    max-width: 574px;
 }
 
 .tagline img {
-    width: 80%;
+    width: 100%;
     height: auto;
-    max-width: 574px;
+
 }
 
 /* Intro Section & Glassmorphic Card */
@@ -501,7 +502,7 @@ text-align: right;
 }
 
 .footer .cont {
-    padding: 5px 5px 30px 5px;
+    padding: 5px 5px 70px 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     width: 100%;
