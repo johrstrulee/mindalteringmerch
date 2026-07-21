@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Headgear — reach out, introduce yourself, share links, or just say hello.">
+    <title>Contact | Headgear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Nav -->
+        <nav class="site-nav" aria-label="Site navigation">
+            <a href="index.html" class="nav-logo">HEADGEAR</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#store">Store</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="custom.html" class="nav-cta">Custom Request</a></li>
+            </ul>
+        </nav>
+
+        <!-- Page Hero -->
+        <div class="page-wrap">
+            <header class="page-hero">
+                <h1>Get in Touch</h1>
+                <p class="hero-sub">We read every message. We reply to most of them.</p>
+            </header>
+
+            <!-- Confirm Message (hidden until submit) -->
+            <div class="confirm-message glass-panel" id="contact-confirm" role="alert" aria-live="polite">
+                <span class="confirm-icon">✉️</span>
+                <h2>Message Received</h2>
+                <p>We have logged your message. We will be in touch — probably sooner than you expect.</p>
+                <button class="btn-secondary" onclick="window.location.reload()">Send another</button>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="glass-panel" id="contact-panel">
+                <p class="section-label">Contact Form</p>
+                <form class="community-form" id="contact-form" novalidate>
+
+                    <!-- Email (required) -->
+                    <div class="form-group">
+                        <label for="c-email">Email Address <span class="req">*</span></label>
+                        <input type="email" id="c-email" name="email" placeholder="you@example.com"
+                            data-required autocomplete="email">
+                        <span class="field-error" id="c-email-err">Email address is required.</span>
+                    </div>
+
+                    <!-- Name + Phone (optional) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="c-name">Name <span class="opt">(optional)</span></label>
+                            <input type="text" id="c-name" name="name" placeholder="What do we call you?"
+                                autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="c-phone">Phone <span class="opt">(optional)</span></label>
+                            <input type="tel" id="c-phone" name="phone" placeholder="503-555-0100"
+                                autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <!-- About (optional) -->
+                    <div class="form-group">
+                        <label for="c-about">About You <span class="opt">(optional)</span></label>
+                        <textarea id="c-about" name="about" rows="4"
+                            placeholder="Tell us a bit about yourself — who you are, what you do, what you are into..."></textarea>
+                    </div>
+
+                    <!-- Links (optional) -->
+                    <div class="form-group">
+                        <label for="c-links">Links <span class="opt">(optional)</span></label>
+                        <input type="text" id="c-links" name="links"
+                            placeholder="Portfolio, Instagram, Bandcamp, website... any links you want to share">
+                    </div>
+
+                    <!-- Location (optional) -->
+                    <div class="form-group">
+                        <label for="c-location">Location <span class="opt">(optional)</span></label>
+                        <input type="text" id="c-location" name="location"
+                            placeholder="City, neighborhood, general region... whatever you're comfortable sharing"
+                            autocomplete="off">
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="contact-submit">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Alternate contact -->
+            <div class="glass-panel" style="text-align:center; padding: 28px 30px;">
+                <p class="section-label" style="text-align:left;">Other Ways to Reach Us</p>
+                <p style="color:#8888a0; font-size:0.9rem; margin-bottom:14px;">
+                    Prefer the old-fashioned route? We also accept electrons at:
+                </p>
+                <p style="color:#c97bff; font-family:'Unica One',sans-serif; letter-spacing:1px; font-size:1rem; margin:0; padding:0;">
+                    headgear@mindalteringmerch.com
+                </p>
+                <p style="color:#555566; font-family:'Unica One',sans-serif; font-size:0.85rem; margin-top:10px; padding:0;">
+                    503.708.9254 &nbsp;·&nbsp; Portland, OR
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="menu">
+                <a href="index.html">Home</a> ::
+                <a href="index.html#store">Store</a> ::
+                <a href="index.html#gallery">Gallery</a> ::
+                <a href="index.html#about">About</a> ::
+                <a href="blog.html">Blog</a> ::
+                <a href="contact.html">Contact</a> ::
+                <a href="custom.html">Custom</a>
+            </div>
+            <div class="cont">
+                <div>headgear@mindalteringmerch.com<br />503.708.9254</div>
+                <div>1950 ne Couch st. apt dv409 <br />Portland, OR 97232</div>
+            </div>
+            <p>&copy; 2026 Headgear. All Rights Altered.</p>
+            <p>&nbsp;</p>
+        </footer>
+    </div>
+
+    <script src="js/community.js" defer></script>
+</body>
+
+</html>

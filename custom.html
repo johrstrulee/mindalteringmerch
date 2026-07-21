@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Headgear Custom Product Requests — have something specific in mind? Tell us about it.">
+    <title>Custom Request | Headgear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Nav -->
+        <nav class="site-nav" aria-label="Site navigation">
+            <a href="index.html" class="nav-logo">HEADGEAR</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#store">Store</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="custom.html" class="active nav-cta">Custom Request</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-wrap">
+
+            <!-- Hero -->
+            <header class="page-hero">
+                <h1>Custom Request</h1>
+                <p class="hero-sub">Have something specific in mind? Tell us about it.</p>
+            </header>
+
+            <!-- Blurb -->
+            <div class="glass-panel" style="margin-bottom:28px;">
+                <p style="color:#9090a8; font-size:0.95rem; line-height:1.7; margin:0; padding:0; text-align:left;">
+                    We happily take custom orders and commissions. Prints, shirts, stickers, one-of-a-kind
+                    sculpted toys, accessories, full clothing designs — if you can describe it, we can probably
+                    make it (or find the right person who can). Give us as much detail as you like below and
+                    we will get back to you with a quote and timeline.
+                </p>
+            </div>
+
+            <!-- Confirm Message (hidden until submit) -->
+            <div class="confirm-message glass-panel" id="custom-confirm" role="alert" aria-live="polite">
+                <span class="confirm-icon">🎨</span>
+                <h2>Request Received</h2>
+                <p>We have your request logged. Expect a response within a few days — probably sooner.</p>
+                <button class="btn-secondary" onclick="window.location.reload()">Submit another</button>
+            </div>
+
+            <!-- Custom Request Form -->
+            <div class="glass-panel" id="custom-panel">
+                <p class="section-label">Tell Us What You Want Made</p>
+                <form class="community-form" id="custom-form" novalidate>
+
+                    <!-- Product Type Picker -->
+                    <div class="form-group">
+                        <label>Product Type <span class="opt">(optional — pick one or leave blank)</span></label>
+                        <div class="product-type-grid">
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-print" value="print">
+                                <label class="product-type-label" for="pt-print">
+                                    <span class="product-type-icon">🖼️</span>
+                                    <span class="product-type-name">Print</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-shirt" value="shirt">
+                                <label class="product-type-label" for="pt-shirt">
+                                    <span class="product-type-icon">👕</span>
+                                    <span class="product-type-name">Shirt</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-sticker" value="sticker">
+                                <label class="product-type-label" for="pt-sticker">
+                                    <span class="product-type-icon">🏷️</span>
+                                    <span class="product-type-name">Sticker</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-toy" value="toy">
+                                <label class="product-type-label" for="pt-toy">
+                                    <span class="product-type-icon">🐙</span>
+                                    <span class="product-type-name">Toy / Figure</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-poster" value="poster">
+                                <label class="product-type-label" for="pt-poster">
+                                    <span class="product-type-icon">📜</span>
+                                    <span class="product-type-name">Poster</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-accessory" value="accessory">
+                                <label class="product-type-label" for="pt-accessory">
+                                    <span class="product-type-icon">💍</span>
+                                    <span class="product-type-name">Accessory</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-clothing" value="clothing">
+                                <label class="product-type-label" for="pt-clothing">
+                                    <span class="product-type-icon">🧥</span>
+                                    <span class="product-type-name">Clothing</span>
+                                </label>
+                            </div>
+
+                            <div class="product-type-option">
+                                <input type="radio" name="product-type" id="pt-other" value="other">
+                                <label class="product-type-label" for="pt-other">
+                                    <span class="product-type-icon">✨</span>
+                                    <span class="product-type-name">Other</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Description (required) -->
+                    <div class="form-group">
+                        <label for="cr-description">
+                            Description <span class="req">*</span>
+                        </label>
+                        <textarea id="cr-description" name="description" rows="6"
+                            placeholder="Describe what you want as specifically or loosely as you like. Design concept, theme, vibe, references, materials, intended use — anything that helps us understand your vision."
+                            data-required></textarea>
+                        <span class="field-error">Please describe what you would like made.</span>
+                    </div>
+
+                    <!-- Dimensions + Budget -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cr-dimensions">
+                                Dimensions / Size <span class="opt">(optional)</span>
+                            </label>
+                            <input type="text" id="cr-dimensions" name="dimensions"
+                                placeholder='e.g. "11x14 print", "men's L", "6 inch figure"'>
+                        </div>
+                        <div class="form-group">
+                            <label for="cr-budget">
+                                Budget Range <span class="opt">(optional)</span>
+                            </label>
+                            <div class="budget-display" id="budget-display">$150</div>
+                            <input type="range" id="cr-budget" name="budget"
+                                min="25" max="2000" step="25" value="150"
+                                aria-label="Budget range slider">
+                            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+                                <span style="font-size:0.7rem;color:#444458;font-family:'Unica One',sans-serif;">$25</span>
+                                <span style="font-size:0.7rem;color:#444458;font-family:'Unica One',sans-serif;">$2000+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reference Links (optional) -->
+                    <div class="form-group">
+                        <label for="cr-references">
+                            Reference Images or Links <span class="opt">(optional)</span>
+                        </label>
+                        <textarea id="cr-references" name="references" rows="3"
+                            placeholder="Paste image URLs, Pinterest boards, Instagram posts, or any references that capture the aesthetic or feel you are going for."></textarea>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:20px; margin-top:4px;">
+                        <p class="section-label" style="margin-bottom:18px;">Contact Info</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cr-name">Name <span class="opt">(optional)</span></label>
+                                <input type="text" id="cr-name" name="name"
+                                    placeholder="What do we call you?" autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="cr-email">Email <span class="req">*</span></label>
+                                <input type="email" id="cr-email" name="email"
+                                    placeholder="So we can get back to you" data-required autocomplete="email">
+                                <span class="field-error">Email is required to send you a quote.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="custom-submit">Submit Request</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="menu">
+                <a href="index.html">Home</a> ::
+                <a href="index.html#store">Store</a> ::
+                <a href="index.html#gallery">Gallery</a> ::
+                <a href="index.html#about">About</a> ::
+                <a href="blog.html">Blog</a> ::
+                <a href="contact.html">Contact</a> ::
+                <a href="custom.html">Custom</a>
+            </div>
+            <div class="cont">
+                <div>headgear@mindalteringmerch.com<br />503.708.9254</div>
+                <div>1950 ne Couch st. apt dv409 <br />Portland, OR 97232</div>
+            </div>
+            <p>&copy; 2026 Headgear. All Rights Altered.</p>
+            <p>&nbsp;</p>
+        </footer>
+    </div>
+
+    <script src="js/community.js" defer></script>
+</body>
+
+</html>

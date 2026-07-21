@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Headgear Community Blog — read and write posts, leave comments, start conversations.">
+    <title>Blog | Headgear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Nav -->
+        <nav class="site-nav" aria-label="Site navigation">
+            <a href="index.html" class="nav-logo">HEADGEAR</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#store">Store</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="custom.html" class="nav-cta">Custom Request</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-wrap" style="max-width:960px;">
+
+            <!-- Hero -->
+            <header class="page-hero">
+                <h1>The Headgear Blog</h1>
+                <p class="hero-sub">Open forum. Anyone can read. Anyone can post.</p>
+            </header>
+
+            <!-- Blog Feed -->
+            <section aria-label="Blog posts">
+                <p class="section-label">Recent Posts</p>
+                <div class="blog-feed" id="blog-feed">
+                    <!-- Rendered by community.js -->
+                </div>
+            </section>
+
+            <!-- Submit a Post -->
+            <section aria-label="Write a blog post">
+                <p class="section-label">Write a Post</p>
+
+                <!-- Confirm (hidden until submit) -->
+                <div class="confirm-message glass-panel" id="blog-post-confirm" role="alert" aria-live="polite">
+                    <span class="confirm-icon">📝</span>
+                    <h2>Post Submitted</h2>
+                    <p>Your post is now live in the feed. Scroll up to see it.</p>
+                    <button class="btn-secondary" onclick="document.getElementById('blog-post-confirm').classList.remove('visible'); document.getElementById('blog-post-panel').style.display=''; document.getElementById('blog-post-form').reset();">
+                        Write another
+                    </button>
+                </div>
+
+                <div class="glass-panel" id="blog-post-panel">
+                    <form class="community-form" id="blog-post-form" novalidate>
+
+                        <!-- Title (required) -->
+                        <div class="form-group">
+                            <label for="bp-title">Post Title <span class="req">*</span></label>
+                            <input type="text" id="bp-title" name="title" placeholder="Give it a headline..."
+                                data-required autocomplete="off">
+                            <span class="field-error">Title is required.</span>
+                        </div>
+
+                        <!-- Author (optional) -->
+                        <div class="form-group">
+                            <label for="bp-name">Your Name <span class="opt">(optional — defaults to Anonymous)</span></label>
+                            <input type="text" id="bp-name" name="name" placeholder="How you want to be known"
+                                autocomplete="name">
+                        </div>
+
+                        <!-- Body (required) -->
+                        <div class="form-group">
+                            <label for="bp-body">Post Body <span class="req">*</span></label>
+                            <textarea id="bp-body" name="body" rows="10"
+                                placeholder="Write anything. Art, music, design, culture, counterculture, conspiracy theories, personal essays, short fiction, rants, recipes — all welcome."
+                                data-required></textarea>
+                            <span class="field-error">Post body is required.</span>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="blog-submit">Publish Post</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="menu">
+                <a href="index.html">Home</a> ::
+                <a href="index.html#store">Store</a> ::
+                <a href="index.html#gallery">Gallery</a> ::
+                <a href="index.html#about">About</a> ::
+                <a href="blog.html">Blog</a> ::
+                <a href="contact.html">Contact</a> ::
+                <a href="custom.html">Custom</a>
+            </div>
+            <div class="cont">
+                <div>headgear@mindalteringmerch.com<br />503.708.9254</div>
+                <div>1950 ne Couch st. apt dv409 <br />Portland, OR 97232</div>
+            </div>
+            <p>&copy; 2026 Headgear. All Rights Altered.</p>
+            <p>&nbsp;</p>
+        </footer>
+    </div>
+
+    <script src="js/community.js" defer></script>
+</body>
+
+</html>
