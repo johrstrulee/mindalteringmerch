@@ -159,4 +159,41 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Run initializer
-document.addEventListener('DOMContentLoaded', initGallery);
+document.addEventListener('DOMContentLoaded', () => {
+    initGallery();
+    initHamburger();
+});
+
+// ── Hamburger Menu ──────────────────────────────────────────
+function initHamburger() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    if (!hamburger || !navLinks) return;
+
+    function openMenu() {
+        hamburger.classList.add('open');
+        navLinks.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hamburger.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Close when any nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close when clicking outside the nav
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.site-nav')) closeMenu();
+    });
+}

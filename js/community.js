@@ -40,6 +40,21 @@ async function sbRpc(fn, params = {}) {
     return res.status === 204 ? null : res.json();
 }
 
+/* ─── Edit Key Helpers ───────────────────────────────────── */
+function genEditKey() {
+    const arr = new Uint8Array(18);
+    crypto.getRandomValues(arr);
+    return btoa(String.fromCharCode(...arr)).replace(/[+/=]/g, c => ({'+':'-','/':'_','=':''}[c]));
+}
+
+function saveEditKey(postId, key) {
+    sessionStorage.setItem(`hg_ekey_${postId}`, key);
+}
+
+function getEditKey(postId) {
+    return sessionStorage.getItem(`hg_ekey_${postId}`);
+}
+
 /* ─── Utilities ──────────────────────────────────────────── */
 function fmt(dateStr) {
     const d = new Date(dateStr);
@@ -180,18 +195,44 @@ async function renderBlogFeed() {
 
         const commentCount = (post.comments || []).length;
         const likeCount    = post.likes || 0;
-        const sessionKey   = `hg_liked_${post.id}`;
-        const alreadyLiked = !!sessionStorage.getItem(sessionKey);
+        const likedKey     = `hg_liked_${post.id}`;
+        const alreadyLiked = !!sessionStorage.getItem(likedKey);
+        const myEditKey    = getEditKey(post.id);
+        const isOwner      = !!myEditKey;
 
         card.innerHTML = `
             <div class="blog-post-header">
-                <h2 class="blog-post-title">${escHtml(post.title)}</h2>
+                <h2 class="blog-post-title" id="title-${post.id}">${escHtml(post.title)}</h2>
                 <div class="blog-post-meta">
                     <span class="blog-post-author">${escHtml(post.author)}</span>
                     <span class="blog-post-date">${fmt(post.created_at)}</span>
+                    ${isOwner ? `
+                    <span class="owner-actions">
+                        <button class="btn-owner-edit" id="btn-edit-${post.id}" aria-label="Edit post">✏️ Edit</button>
+                        <button class="btn-owner-delete" id="btn-delete-${post.id}" aria-label="Delete post">🗑 Delete</button>
+                    </span>` : ''}
                 </div>
             </div>
-            <p class="blog-post-body">${escHtml(post.body)}</p>
+            <p class="blog-post-body" id="body-${post.id}">${escHtml(post.body)}</p>
+
+            ${isOwner ? `
+            <div class="edit-form-wrap" id="edit-wrap-${post.id}" hidden>
+                <form class="edit-form" id="edit-form-${post.id}">
+                    <div class="edit-form-field">
+                        <label for="ef-title-${post.id}">Title</label>
+                        <input type="text" id="ef-title-${post.id}" value="${escHtml(post.title)}" required />
+                    </div>
+                    <div class="edit-form-field">
+                        <label for="ef-body-${post.id}">Body</label>
+                        <textarea id="ef-body-${post.id}" rows="8" required>${escHtml(post.body)}</textarea>
+                    </div>
+                    <div class="edit-form-actions">
+                        <button type="submit" class="btn-edit-save" id="ef-save-${post.id}">Save Changes</button>
+                        <button type="button" class="btn-edit-cancel" id="ef-cancel-${post.id}">Cancel</button>
+                    </div>
+                </form>
+            </div>` : ''}
+
             <div class="blog-post-actions">
                 <button class="btn-like ${alreadyLiked ? 'liked' : ''}"
                     data-id="${post.id}" id="like-${post.id}" aria-label="Like this post">
@@ -224,11 +265,11 @@ async function renderBlogFeed() {
 
         /* Like button ───────────────────────────────────────── */
         card.querySelector(`#like-${post.id}`).addEventListener('click', async function () {
-            if (sessionStorage.getItem(sessionKey)) return;
+            if (sessionStorage.getItem(likedKey)) return;
             this.disabled = true;
             try {
                 await sbRpc('increment_post_likes', { p_id: post.id });
-                sessionStorage.setItem(sessionKey, '1');
+                sessionStorage.setItem(likedKey, '1');
                 this.classList.add('liked');
                 const countEl = this.querySelector('.like-count');
                 countEl.textContent = parseInt(countEl.textContent, 10) + 1;
@@ -249,10 +290,10 @@ async function renderBlogFeed() {
         /* Comment submit ─────────────────────────────────────── */
         card.querySelector(`#comment-form-${post.id}`).addEventListener('submit', async e => {
             e.preventDefault();
-            const nameEl   = document.getElementById(`cn-name-${post.id}`);
-            const textEl   = document.getElementById(`cn-text-${post.id}`);
+            const nameEl    = document.getElementById(`cn-name-${post.id}`);
+            const textEl    = document.getElementById(`cn-text-${post.id}`);
             const submitBtn = document.getElementById(`cn-submit-${post.id}`);
-            const text     = textEl.value.trim();
+            const text      = textEl.value.trim();
             if (!text) { textEl.focus(); return; }
 
             setBtnLoading(submitBtn, true, 'Posting…');
@@ -264,18 +305,13 @@ async function renderBlogFeed() {
                     author:  nameEl.value.trim() || 'Anonymous',
                     text
                 });
-
-                // Append new comment to DOM
-                const list = document.getElementById(`comment-list-${post.id}`);
-                const noMsg = list.querySelector('.no-comments');
+                const list   = document.getElementById(`comment-list-${post.id}`);
+                const noMsg  = list.querySelector('.no-comments');
                 if (noMsg) noMsg.remove();
                 list.insertAdjacentHTML('beforeend', renderComments([newComment]));
-
-                // Update toggle button count
-                const toggleBtn  = card.querySelector('.btn-toggle-comments');
-                const newCount   = list.querySelectorAll('.comment-item').length;
+                const toggleBtn = card.querySelector('.btn-toggle-comments');
+                const newCount  = list.querySelectorAll('.comment-item').length;
                 toggleBtn.textContent = `💬 ${newCount} comment${newCount !== 1 ? 's' : ''}`;
-
                 nameEl.value = '';
                 textEl.value = '';
             } catch (err) {
@@ -285,6 +321,121 @@ async function renderBlogFeed() {
                 setBtnLoading(submitBtn, false);
             }
         });
+
+        /* Edit button ───────────────────────────────────────── */
+        if (isOwner) {
+            const editBtn   = card.querySelector(`#btn-edit-${post.id}`);
+            const deleteBtn = card.querySelector(`#btn-delete-${post.id}`);
+            const editWrap  = card.querySelector(`#edit-wrap-${post.id}`);
+            const editForm  = card.querySelector(`#edit-form-${post.id}`);
+            const titleEl   = card.querySelector(`#title-${post.id}`);
+            const bodyEl    = card.querySelector(`#body-${post.id}`);
+
+            editBtn.addEventListener('click', () => {
+                const open = editWrap.hidden;
+                editWrap.hidden = !open;
+                editBtn.classList.toggle('active', open);
+                if (open) {
+                    card.querySelector(`#ef-title-${post.id}`).value = titleEl.textContent;
+                    card.querySelector(`#ef-body-${post.id}`).value  = bodyEl.textContent;
+                    card.querySelector(`#ef-title-${post.id}`).focus();
+                }
+            });
+
+            card.querySelector(`#ef-cancel-${post.id}`).addEventListener('click', () => {
+                editWrap.hidden = true;
+                editBtn.classList.remove('active');
+            });
+
+            editForm.addEventListener('submit', async e => {
+                e.preventDefault();
+                const newTitle = card.querySelector(`#ef-title-${post.id}`).value.trim();
+                const newBody  = card.querySelector(`#ef-body-${post.id}`).value.trim();
+                if (!newTitle || !newBody) return;
+
+                const saveBtn = card.querySelector(`#ef-save-${post.id}`);
+                setBtnLoading(saveBtn, true, 'Saving…');
+                clearInlineError(editForm);
+
+                try {
+                    const ok = await sbRpc('update_blog_post', {
+                        p_id: post.id, p_key: myEditKey,
+                        p_title: newTitle, p_body: newBody
+                    });
+                    if (!ok) throw new Error('Key mismatch');
+                    titleEl.textContent = newTitle;
+                    bodyEl.textContent  = newBody;
+                    editWrap.hidden = true;
+                    editBtn.classList.remove('active');
+                } catch (err) {
+                    console.error('[Headgear] Edit error:', err);
+                    showInlineError(editForm, 'Could not save changes — please try again.');
+                } finally {
+                    setBtnLoading(saveBtn, false);
+                }
+            });
+
+            /* Delete button ─────────────────────────────────── */
+            deleteBtn.addEventListener('click', () => {
+                showDeleteConfirm(post.id, myEditKey, card);
+            });
+        }
+    });
+}
+
+/* ─── Blog: Delete Confirm Modal ────────────────────────── */
+function showDeleteConfirm(postId, editKey, card) {
+    // Remove any existing modal
+    document.getElementById('hg-delete-modal')?.remove();
+
+    const modal = document.createElement('div');
+    modal.id        = 'hg-delete-modal';
+    modal.className = 'delete-modal-overlay';
+    modal.innerHTML = `
+        <div class="delete-modal" role="dialog" aria-modal="true" aria-labelledby="del-modal-title">
+            <p class="delete-modal-icon">🗑</p>
+            <h3 id="del-modal-title">Delete this post?</h3>
+            <p class="delete-modal-sub">This can't be undone. Comments will also be removed.</p>
+            <div class="delete-modal-actions">
+                <button class="btn-confirm-delete" id="del-confirm-btn">Yes, delete it</button>
+                <button class="btn-cancel-delete" id="del-cancel-btn">Never mind</button>
+            </div>
+            <p class="sb-error delete-modal-err" id="del-error" style="display:none;"></p>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    requestAnimationFrame(() => modal.classList.add('open'));
+
+    const close = () => {
+        modal.classList.remove('open');
+        modal.addEventListener('transitionend', () => modal.remove(), { once: true });
+    };
+
+    modal.querySelector('#del-cancel-btn').addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+
+    modal.querySelector('#del-confirm-btn').addEventListener('click', async function () {
+        this.disabled = true;
+        this.textContent = 'Deleting…';
+        const errEl = modal.querySelector('#del-error');
+        errEl.style.display = 'none';
+
+        try {
+            const ok = await sbRpc('delete_blog_post', { p_id: postId, p_key: editKey });
+            if (!ok) throw new Error('Key mismatch');
+            sessionStorage.removeItem(`hg_ekey_${postId}`);
+            close();
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            card.style.opacity    = '0';
+            card.style.transform  = 'translateY(-8px)';
+            card.addEventListener('transitionend', () => card.remove(), { once: true });
+        } catch (err) {
+            console.error('[Headgear] Delete error:', err);
+            errEl.textContent    = 'Could not delete — please try again.';
+            errEl.style.display  = 'block';
+            this.disabled        = false;
+            this.textContent     = 'Yes, delete it';
+        }
     });
 }
 
@@ -304,11 +455,14 @@ async function initBlog() {
         clearInlineError(form);
 
         try {
-            await sbInsert('blog_posts', {
-                title:  form.querySelector('#bp-title').value.trim(),
-                author: form.querySelector('#bp-name')?.value.trim() || 'Anonymous',
-                body:   form.querySelector('#bp-body').value.trim()
+            const editKey = genEditKey();
+            const [inserted] = await sbInsert('blog_posts', {
+                title:    form.querySelector('#bp-title').value.trim(),
+                author:   form.querySelector('#bp-name')?.value.trim() || 'Anonymous',
+                body:     form.querySelector('#bp-body').value.trim(),
+                edit_key: editKey
             });
+            saveEditKey(inserted.id, editKey);
 
             form.reset();
             showConfirm('blog-post-panel', 'blog-post-confirm');
@@ -408,4 +562,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initContact();
     initBlog();
     initCustomRequest();
+    initHamburger();
 });
+
+/* ─── Hamburger Menu ─────────────────────────────────────── */
+function initHamburger() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    if (!hamburger || !navLinks) return;
+
+    function openMenu() {
+        hamburger.classList.add('open');
+        navLinks.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hamburger.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.site-nav')) closeMenu();
+    });
+}

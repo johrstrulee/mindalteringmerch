@@ -23,8 +23,16 @@
     <div class="container">
         <!-- Site Nav -->
         <nav class="site-nav" aria-label="Site navigation">
-            <a href="index.html" class="nav-logo">HEADGEAR</a>
-            <ul class="nav-links">
+            <a href="index.html" class="nav-brand nav-brand-mobile-img">
+                <img src="img/logo-mobile.png" alt="Headgear" class="nav-mobile-logo">
+            </a>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#store">Store</a></li>
                 <li><a href="#gallery">Gallery</a></li>
@@ -86,143 +94,16 @@
 
         <!-- Store Section -->
         <section class="store-section">
-         <div id='collection-component-1784549282728'></div>
-<script type="text/javascript">
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'wx3aga-ut.myshopify.com',
-      storefrontAccessToken: 'b3ccf2ff01d92c1672564b2f2581a1de',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('collection', {
-        id: '300944752691',
-        node: document.getElementById('collection-component-1784549282728'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "calc(25% - 20px)",
-          "margin-left": "20px",
-          "margin-bottom": "50px",
-          "width": "calc(25% - 20px)"
-        }
-      },
-      "button": {
-        "font-family": "Arial, sans-serif",
-        ":hover": {
-          "background-color": "#7ba4b6"
-        },
-        "background-color": "#89b6ca",
-        ":focus": {
-          "background-color": "#7ba4b6"
-        }
-      }
-    },
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "productSet": {
-    "styles": {
-      "products": {
-        "@media (min-width: 601px)": {
-          "margin-left": "-20px"
-        }
-      }
-    }
-  },
-  "modalProduct": {
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "button": false,
-      "buttonWithQuantity": true
-    },
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "0px"
-        }
-      },
-      "button": {
-        "font-family": "Arial, sans-serif",
-        ":hover": {
-          "background-color": "#7ba4b6"
-        },
-        "background-color": "#89b6ca",
-        ":focus": {
-          "background-color": "#7ba4b6"
-        }
-      }
-    },
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "option": {},
-  "cart": {
-    "styles": {
-      "button": {
-        "font-family": "Arial, sans-serif",
-        ":hover": {
-          "background-color": "#7ba4b6"
-        },
-        "background-color": "#89b6ca",
-        ":focus": {
-          "background-color": "#7ba4b6"
-        }
-      }
-    },
-    "text": {
-      "total": "Subtotal",
-      "button": "Checkout"
-    }
-  },
-  "toggle": {
-    "styles": {
-      "toggle": {
-        "font-family": "Arial, sans-serif",
-        "background-color": "#89b6ca",
-        ":hover": {
-          "background-color": "#7ba4b6"
-        },
-        ":focus": {
-          "background-color": "#7ba4b6"
-        }
-      }
-    }
-  }
-},
-      });
-    });
-  }
-})();
-/*]]>*/
-</script>
-            <div><center><a href="http://shop.mindalteringmerch.com/"><h2>Click Here to heck out the rest of store </h2></a></center></div>
+
+            <div>
+                <center><a href="http://shop.mindalteringmerch.com/">
+                        <picture>
+                            <source srcset="img/promo-mobile.png" media="(max-width: 600px)">
+                            <img src="img/promo.png" alt="Headgear Promo" />
+                        </picture>
+                        <h2>Click here to visit the store </h2>
+                    </a></center>
+            </div>
         </section>
 
         <!-- Gallery Section -->

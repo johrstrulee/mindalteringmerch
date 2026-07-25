@@ -14,8 +14,12 @@ CREATE TABLE IF NOT EXISTS blog_posts (
     author     TEXT        NOT NULL DEFAULT 'Anonymous',
     body       TEXT        NOT NULL,
     likes      INTEGER     NOT NULL DEFAULT 0,
+    edit_key   TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- If the table already exists, add the column (safe to run again)
+ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS edit_key TEXT;
 
 -- ── Comments ─────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS comments (
@@ -57,10 +61,11 @@ ALTER TABLE comments            ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE custom_requests     ENABLE ROW LEVEL SECURITY;
 
--- Blog posts: anyone can read or write
+-- Blog posts: anyone can read or write; edit/delete gated server-side by edit_key
 CREATE POLICY "public_select_posts"  ON blog_posts FOR SELECT USING (true);
 CREATE POLICY "public_insert_posts"  ON blog_posts FOR INSERT WITH CHECK (true);
 CREATE POLICY "public_update_likes"  ON blog_posts FOR UPDATE USING (true) WITH CHECK (true);
+CREATE POLICY "public_delete_posts"  ON blog_posts FOR DELETE USING (true);
 
 -- Comments: anyone can read or write
 CREATE POLICY "public_select_comments" ON comments FOR SELECT USING (true);
@@ -77,6 +82,47 @@ LANGUAGE sql
 SECURITY DEFINER
 AS $$
     UPDATE blog_posts SET likes = likes + 1 WHERE id = p_id;
+$$;
+
+-- ── Update Blog Post (key-gated) ───────────────────────────
+CREATE OR REPLACE FUNCTION update_blog_post(
+    p_id      UUID,
+    p_key     TEXT,
+    p_title   TEXT,
+    p_body    TEXT
+)
+RETURNS boolean
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    UPDATE blog_posts
+    SET    title = p_title, body = p_body
+    WHERE  id = p_id AND edit_key = p_key;
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+    RETURN v_count > 0;
+END;
+$$;
+
+-- ── Delete Blog Post (key-gated) ───────────────────────────
+CREATE OR REPLACE FUNCTION delete_blog_post(
+    p_id  UUID,
+    p_key TEXT
+)
+RETURNS boolean
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    DELETE FROM blog_posts
+    WHERE  id = p_id AND edit_key = p_key;
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+    RETURN v_count > 0;
+END;
 $$;
 
 -- ── Seed Posts ────────────────────────────────────────────────
