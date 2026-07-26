@@ -15,42 +15,24 @@
     href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="css/default.css">
-  <link rel="stylesheet" href="css/community.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <div class="container">
     <!-- Site Nav -->
-    <nav class="site-nav" aria-label="Site navigation">
-      <a href="index.html" class="nav-brand nav-brand-mobile-img">
-        <img src="img/logo-mobile.png" alt="Headgear" class="nav-mobile-logo">
-      </a>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false"
-        aria-controls="nav-links">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#store">Store</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="custom.html" class="nav-cta">Custom Request</a></li>
-      </ul>
-    </nav>
 
     <!-- Header Section -->
     <header class="header">
       <div class="logo">
-        <img src="img/logostack-med.png" alt="Headgear Logo" />
+        <picture>
+          <source srcset="img/logo-mobile.png" media="(max-width: 768px)">
+          <img src="img/logostack-med.png" alt="Headgear Logo" />
+        </picture>
       </div>
       <div class="tagline"><img src="img/mindmerch.png" alt="Mind Altering Merchandise" />
 
-        <p>
+        <p class="intro-text">
           You have stumbled into our omnium-gatherum of oddments for the malleable mind. Browse our collection
           of figmentography, find a wardrobe change for your next head change,
           or check out our toys for grown ups (but not adults).
@@ -58,39 +40,7 @@
       </div>
     </header>
 
-    <!-- Intro Section -->
-    <!--
-        <section class="intro-section">
-            <div class="glass-card">
-                <p class="intro-lead">
-                    You have stumbled into our omnium-gatherum of oddments for the malleable mind. Browse our collection
-                    of figmentography, find a wardrobe change for your next head change,
-                    or check out our toys for grown ups (but not adults).
-                    
-                    We make marks, smear pigments, model clay, push pixels, and write code.
-                    -->
-    <!--
-                    We produce visual anomalies, conversational hazards, and other artifacts of questionable utility.
-                    
-                    If you were looking for sensible decor and quiet compliance, you've made a wrong turn.
-                   
-                    But if you suspect reality is just a rough draft, we have the edits.
 
-                   
-                    We manufacture tangible mischief, wearable static, and other forms of creative defiance.
-                    Our creations are designed to invite questions, start arguments, and look excellent doing it.
-                    If you're seeking polite decorations, you've wandered into the wrong studio.
-                    -->
-    <!-- We build artifacts for the beautifully maladjusted. Our creations are designed to disrupt smooth
-                    surfaces, spark conversations, and occasionally concern your neighbors. If you were looking for
-                    quiet aesthetics and polite compromise, you took a wrong turn. 
-
-                </p>
-                <div class="intro-pic"><img src="img/houseparty.png" /></div>
-            </div>
-
-        </section>
-        -->
 
     <!-- Store Section -->
     <section class="store-section">

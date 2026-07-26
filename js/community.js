@@ -562,37 +562,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initContact();
     initBlog();
     initCustomRequest();
-    initHamburger();
 });
-
-/* ─── Hamburger Menu ─────────────────────────────────────── */
-function initHamburger() {
-    const hamburger = document.getElementById('nav-hamburger');
-    const navLinks  = document.getElementById('nav-links');
-    if (!hamburger || !navLinks) return;
-
-    function openMenu() {
-        hamburger.classList.add('open');
-        navLinks.classList.add('open');
-        hamburger.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeMenu() {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-    }
-
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        hamburger.classList.contains('open') ? closeMenu() : openMenu();
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.site-nav')) closeMenu();
-    });
-}
