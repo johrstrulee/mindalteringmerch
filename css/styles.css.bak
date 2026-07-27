@@ -127,7 +127,7 @@ p {
     aspect-ratio: 1 / 1;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s cubic-bezier(0.44, 0.84, 0.165, 1),
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
         border-color 0.3s ease,
         box-shadow 0.3s ease;
 }
@@ -144,11 +144,11 @@ p {
 
 .gallery-item:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(51, 51, 255, 0.25);
+    box-shadow: 0 12px 30px rgba(255, 51, 102, 0.25);
 }
 
 .gallery-item:hover::after {
-    border-color: rgba(51, 51, 255, 0.6);
+    border-color: rgba(255, 51, 102, 0.6);
 }
 
 .gallery-item img {
@@ -282,7 +282,7 @@ p {
     justify-content: center;
     align-items: center;
     transform: scale(0.96);
-    transition: transform 0.35s cubic-bezier(0.44, 0.84, 0.165, 1);
+    transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .shadowbox.active .shadowbox-content {
@@ -501,7 +501,7 @@ p {
     font-size: 3.8rem;
     color: #c8c8ff;
     margin: 0 0 10px;
-    text-shadow: 0 0 40px rgba(100, 149, 237, 0.5);
+    text-shadow: 0 0 40px rgba(160, 120, 255, 0.5);
     line-height: 1.1;
 }
 
@@ -567,7 +567,7 @@ p {
 }
 
 .form-group label .req {
-    color: #6495ed;
+    color: #c97bff;
     margin-left: 3px;
 }
 
@@ -609,8 +609,8 @@ p {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: rgba(100, 149, 237, 0.5);
-    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.1);
+    border-color: rgba(201, 123, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(201, 123, 255, 0.1);
     background: rgba(255, 255, 255, 0.07);
 }
 
@@ -634,7 +634,7 @@ p {
 
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn-submit {
-    background: linear-gradient(135deg, #3a68c0 0%, #6495ed 100%);
+    background: linear-gradient(135deg, #7b3fbf 0%, #c97bff 100%);
     color: #fff;
     font-family: 'Unica One', sans-serif;
     font-size: 0.85rem;
@@ -646,13 +646,13 @@ p {
     cursor: pointer;
     align-self: flex-start;
     transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px rgba(58, 104, 192, 0.35);
+    box-shadow: 0 4px 20px rgba(150, 60, 220, 0.35);
 }
 
 .btn-submit:hover {
     opacity: 0.88;
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(58, 104, 192, 0.5);
+    box-shadow: 0 8px 28px rgba(150, 60, 220, 0.5);
 }
 
 .btn-submit:active {
@@ -702,9 +702,9 @@ p {
 .confirm-message h2 {
     font-family: 'Babylonica', cursive;
     font-size: 2.8rem;
-    color: #6495ed;
+    color: #c97bff;
     margin: 0;
-    text-shadow: 0 0 30px rgba(100, 149, 237, 0.4);
+    text-shadow: 0 0 30px rgba(201, 123, 255, 0.4);
 }
 
 .confirm-message p {
@@ -731,7 +731,7 @@ p {
 }
 
 .blog-post-card:hover {
-    border-color: rgba(100, 149, 237, 0.2);
+    border-color: rgba(201, 123, 255, 0.2);
     box-shadow: 0 6px 30px rgba(120, 60, 180, 0.15);
 }
 
@@ -758,7 +758,7 @@ p {
     font-size: 0.78rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #6495ed;
+    color: #c97bff;
     font-family: 'Unica One', sans-serif;
 }
 
@@ -806,15 +806,15 @@ p {
 }
 
 .btn-like:hover {
-    border-color: rgba(100, 149, 237, 0.4);
-    color: #6495ed;
-    background: rgba(100, 149, 237, 0.06);
+    border-color: rgba(201, 123, 255, 0.4);
+    color: #c97bff;
+    background: rgba(201, 123, 255, 0.06);
 }
 
 .btn-like.liked {
-    border-color: rgba(100, 149, 237, 0.5);
-    color: #6495ed;
-    background: rgba(100, 149, 237, 0.1);
+    border-color: rgba(201, 123, 255, 0.5);
+    color: #c97bff;
+    background: rgba(201, 123, 255, 0.1);
 }
 
 .btn-toggle-comments {
@@ -863,7 +863,7 @@ p {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #243870, #5a8ae0);
+    background: linear-gradient(135deg, #4a2a70, #9b5de5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -894,7 +894,7 @@ p {
     font-size: 0.78rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #6495ed;
+    color: #c97bff;
 }
 
 .comment-date {
@@ -951,7 +951,7 @@ p {
 
 .comment-form input:focus,
 .comment-form textarea:focus {
-    border-color: rgba(100, 149, 237, 0.4);
+    border-color: rgba(201, 123, 255, 0.4);
 }
 
 .comment-form-row {
@@ -965,10 +965,10 @@ p {
 }
 
 .btn-post-comment {
-    background: rgba(100, 149, 237, 0.15);
-    border: 1px solid rgba(100, 149, 237, 0.35);
+    background: rgba(201, 123, 255, 0.15);
+    border: 1px solid rgba(201, 123, 255, 0.35);
     border-radius: 8px;
-    color: #6495ed;
+    color: #c97bff;
     font-family: 'Unica One', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 1.5px;
@@ -981,8 +981,8 @@ p {
 }
 
 .btn-post-comment:hover {
-    background: rgba(100, 149, 237, 0.25);
-    border-color: rgba(100, 149, 237, 0.6);
+    background: rgba(201, 123, 255, 0.25);
+    border-color: rgba(201, 123, 255, 0.6);
     color: #d9a0ff;
 }
 
@@ -1014,7 +1014,7 @@ p {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #3a68c0;
+    background: #7b3fbf;
     display: inline-block;
     animation: dotPulse 1.2s ease-in-out infinite;
 }
@@ -1095,14 +1095,14 @@ p {
 }
 
 .product-type-label:hover {
-    background: rgba(100, 149, 237, 0.06);
-    border-color: rgba(100, 149, 237, 0.3);
+    background: rgba(201, 123, 255, 0.06);
+    border-color: rgba(201, 123, 255, 0.3);
 }
 
 .product-type-option input[type="radio"]:checked+.product-type-label {
-    background: rgba(100, 149, 237, 0.12);
-    border-color: rgba(100, 149, 237, 0.55);
-    box-shadow: 0 0 16px rgba(100, 149, 237, 0.15);
+    background: rgba(201, 123, 255, 0.12);
+    border-color: rgba(201, 123, 255, 0.55);
+    box-shadow: 0 0 16px rgba(201, 123, 255, 0.15);
 }
 
 .product-type-icon {
@@ -1119,14 +1119,14 @@ p {
 }
 
 .product-type-option input[type="radio"]:checked+.product-type-label .product-type-name {
-    color: #6495ed;
+    color: #c97bff;
 }
 
 /* ── Budget Slider ───────────────────────────────────────── */
 .budget-display {
     font-family: 'Unica One', sans-serif;
     font-size: 1.1rem;
-    color: #6495ed;
+    color: #c97bff;
     text-align: right;
     letter-spacing: 1px;
 }
@@ -1148,10 +1148,10 @@ input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    background: linear-gradient(135deg, #3a68c0, #6495ed);
+    background: linear-gradient(135deg, #7b3fbf, #c97bff);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(100, 149, 237, 0.4);
+    box-shadow: 0 0 8px rgba(201, 123, 255, 0.4);
     transition: transform 0.15s ease;
 }
 
@@ -1162,11 +1162,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
 input[type="range"]::-moz-range-thumb {
     width: 18px;
     height: 18px;
-    background: linear-gradient(135deg, #3a68c0, #6495ed);
+    background: linear-gradient(135deg, #7b3fbf, #c97bff);
     border-radius: 50%;
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 8px rgba(100, 149, 237, 0.4);
+    box-shadow: 0 0 8px rgba(201, 123, 255, 0.4);
 }
 
 /* ── Owner Actions (Edit / Delete) ───────────────────────── */
@@ -1198,9 +1198,9 @@ input[type="range"]::-moz-range-thumb {
 
 .btn-owner-edit:hover,
 .btn-owner-edit.active {
-    background: rgba(100, 149, 237, 0.1);
-    border-color: rgba(100, 149, 237, 0.4);
-    color: #6495ed;
+    background: rgba(201, 123, 255, 0.1);
+    border-color: rgba(201, 123, 255, 0.4);
+    color: #c97bff;
 }
 
 .btn-owner-delete {
@@ -1216,8 +1216,8 @@ input[type="range"]::-moz-range-thumb {
 /* ── Inline Edit Form ────────────────────────────────────── */
 .edit-form-wrap {
     padding: 0 28px 20px;
-    border-top: 1px solid rgba(100, 149, 237, 0.15);
-    background: rgba(55, 100, 190, 0.04);
+    border-top: 1px solid rgba(201, 123, 255, 0.15);
+    background: rgba(120, 60, 200, 0.04);
     animation: fadeInUp 0.25s ease both;
 }
 
@@ -1245,7 +1245,7 @@ input[type="range"]::-moz-range-thumb {
 .edit-form-field input,
 .edit-form-field textarea {
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(100, 149, 237, 0.25);
+    border: 1px solid rgba(201, 123, 255, 0.25);
     border-radius: 8px;
     color: #d0d0e0;
     font-family: 'Unica One', sans-serif;
@@ -1260,8 +1260,8 @@ input[type="range"]::-moz-range-thumb {
 
 .edit-form-field input:focus,
 .edit-form-field textarea:focus {
-    border-color: rgba(100, 149, 237, 0.55);
-    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.1);
+    border-color: rgba(201, 123, 255, 0.55);
+    box-shadow: 0 0 0 3px rgba(201, 123, 255, 0.1);
 }
 
 .edit-form-actions {
@@ -1272,7 +1272,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .btn-edit-save {
-    background: linear-gradient(135deg, #3060b8 0%, #6495ed 100%);
+    background: linear-gradient(135deg, #6a30b0 0%, #c97bff 100%);
     color: #fff;
     font-family: 'Unica One', sans-serif;
     font-size: 0.75rem;
@@ -1283,7 +1283,7 @@ input[type="range"]::-moz-range-thumb {
     padding: 9px 22px;
     cursor: pointer;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 3px 14px rgba(50, 90, 180, 0.3);
+    box-shadow: 0 3px 14px rgba(130, 50, 200, 0.3);
 }
 
 .btn-edit-save:hover {
