@@ -11,7 +11,6 @@ const artworkImages = [
     { filename: 'granolabjork.png', title: 'Granola Björk' },
     { filename: 'houseparty.png', title: 'House Party' },
     { filename: 'intheweeds.png', title: 'In the Weeds' },
-    { filename: 'kakistocracy.png', title: 'Kakistocracy' },
     { filename: 'longnecklady.png', title: 'Longneck Lady' },
     { filename: 'madusafilangies.png', title: 'Madusa Filangies' },
     { filename: 'manicangies.png', title: 'Manic Angies' },
@@ -38,33 +37,33 @@ let currentIndex = 0;
 // Initialize Gallery
 function initGallery() {
     if (!galleryGrid) return;
-    
+
     // Dynamically generate thumbnail items
     artworkImages.forEach((art, index) => {
         const item = document.createElement('div');
         item.classList.add('gallery-item');
         item.setAttribute('data-index', index);
         item.setAttribute('tabindex', '0'); // Make focusable for accessibility
-        
+
         item.innerHTML = `
             <img src="img/artwork/${art.filename}" alt="${art.title}" loading="lazy">
             <div class="gallery-item-overlay">
                 <h4 class="gallery-item-title">${art.title}</h4>
             </div>
         `;
-        
+
         // Open shadowbox on click
         item.addEventListener('click', () => {
             openShadowbox(index);
         });
-        
+
         // Open shadowbox on pressing Enter when focused
         item.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 openShadowbox(index);
             }
         });
-        
+
         galleryGrid.appendChild(item);
     });
 }
@@ -76,7 +75,7 @@ function openShadowbox(index) {
     shadowbox.classList.add('active');
     shadowbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
+
     // Focus the modal for accessibility
     shadowbox.focus();
 }
@@ -86,7 +85,7 @@ function closeShadowbox() {
     shadowbox.classList.remove('active');
     shadowbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = ''; // Restore background scrolling
-    
+
     // Clear image src after transition to avoid flicker next time it opens
     setTimeout(() => {
         if (!shadowbox.classList.contains('active')) {
@@ -99,10 +98,10 @@ function closeShadowbox() {
 function updateShadowboxContent() {
     const art = artworkImages[currentIndex];
     if (!art) return;
-    
+
     // Fade content out slightly during transition
     shadowboxImg.style.opacity = '0.3';
-    
+
     // Load new image
     const tempImg = new Image();
     tempImg.src = `img/artwork/${art.filename}`;
@@ -111,7 +110,7 @@ function updateShadowboxContent() {
         shadowboxImg.alt = art.title;
         shadowboxImg.style.opacity = '1';
     };
-    
+
     shadowboxCaption.textContent = art.title;
     shadowboxCounter.textContent = `${currentIndex + 1} / ${artworkImages.length}`;
 }
@@ -142,7 +141,7 @@ shadowbox.addEventListener('click', (e) => {
 // Keyboard Navigation
 window.addEventListener('keydown', (e) => {
     if (!shadowbox.classList.contains('active')) return;
-    
+
     switch (e.key) {
         case 'ArrowRight':
         case 'd':

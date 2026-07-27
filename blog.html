@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Headgear Community Blog — read and write posts, leave comments, start conversations.">
+    <meta name="description"
+        content="Headgear Community Blog — read and write posts, leave comments, start conversations.">
     <title>Blog | Headgear</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Babylonica:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sassy+Frass:wght@400;700&family=Unica+One:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -21,7 +24,12 @@
 
             <!-- Hero -->
             <header class="page-hero">
-                <h1>The Headgear Blog</h1>
+                <div class="logo">
+                    <picture>
+                        <source srcset="img/logo-mobile.png" media="(max-width: 768px)">
+                        <img src="img/logo-mobile.png" alt="Headgear Logo" />
+                    </picture>
+                </div>
                 <p class="hero-sub">Open forum. Anyone can read. Anyone can post.</p>
             </header>
 
@@ -42,7 +50,8 @@
                     <span class="confirm-icon">📝</span>
                     <h2>Post Submitted</h2>
                     <p>Your post is now live in the feed. Scroll up to see it.</p>
-                    <button class="btn-secondary" onclick="document.getElementById('blog-post-confirm').classList.remove('visible'); document.getElementById('blog-post-panel').style.display=''; document.getElementById('blog-post-form').reset();">
+                    <button class="btn-secondary"
+                        onclick="document.getElementById('blog-post-confirm').classList.remove('visible'); document.getElementById('blog-post-panel').style.display=''; document.getElementById('blog-post-form').reset();">
                         Write another
                     </button>
                 </div>
@@ -60,7 +69,8 @@
 
                         <!-- Author (optional) -->
                         <div class="form-group">
-                            <label for="bp-name">Your Name <span class="opt">(optional — defaults to Anonymous)</span></label>
+                            <label for="bp-name">Your Name <span class="opt">(optional — defaults to
+                                    Anonymous)</span></label>
                             <input type="text" id="bp-name" name="name" placeholder="How you want to be known"
                                 autocomplete="name">
                         </div>
