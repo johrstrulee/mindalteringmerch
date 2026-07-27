@@ -11,7 +11,6 @@ const artworkImages = [
     { filename: 'granolabjork.png', title: 'Granola Björk' },
     { filename: 'houseparty.png', title: 'House Party' },
     { filename: 'intheweeds.png', title: 'In the Weeds' },
-    { filename: 'kakistocracy.png', title: 'Kakistocracy' },
     { filename: 'longnecklady.png', title: 'Longneck Lady' },
     { filename: 'madusafilangies.png', title: 'Madusa Filangies' },
     { filename: 'manicangies.png', title: 'Manic Angies' },
